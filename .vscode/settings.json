@@ -1,0 +1,5 @@
+{
+  "java.compile.nullAnalysis.mode": "automatic",
+  "cSpell.words": ["Nativewind", "netinfo", "worklets"],
+  "tailwindCSS.classAttributes": ["class", "className", "headerClassName"]
+}

@@ -1,0 +1,24 @@
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { lazy } from 'react';
+
+const LoginScreen = lazy(() => import('@/app/auth/screens/LoginScreen'));
+
+export type AuthStackParamList = {
+  Login: undefined;
+};
+
+const Stack = createNativeStackNavigator<AuthStackParamList>();
+
+const AuthStack = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Login" component={LoginScreen} />
+    </Stack.Navigator>
+  );
+};
+
+export default AuthStack;
