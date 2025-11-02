@@ -1,12 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import AuthStack from './authStack';
 import { useAuthStore } from '@/stores/useAuthStore';
-import HomeTabs from './HomeTabs';
+import { RootStackParamList } from './types';
+import { lazy } from 'react';
+import { LayoutScreen } from '@/components';
 
-export type RootStackParamList = {
-  Auth: undefined;
-  Home: undefined;
-};
+const HomeTabs = lazy(() => import('./HomeTabs'));
+const AuthStack = lazy(() => import('./authStack'));
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const RootStack = () => {
@@ -14,14 +14,17 @@ const RootStack = () => {
 
   return (
     <Stack.Navigator
+      screenLayout={LayoutScreen}
       screenOptions={{
         headerShown: false,
       }}
     >
       {isAuth ? (
-        <Stack.Screen name="Auth" component={AuthStack} />
-      ) : (
         <Stack.Screen name="Home" component={HomeTabs} />
+      ) : (
+        <>
+          <Stack.Screen name="Auth" component={AuthStack} />
+        </>
       )}
     </Stack.Navigator>
   );

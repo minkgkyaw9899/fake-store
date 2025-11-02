@@ -1,5 +1,20 @@
 {
   "java.compile.nullAnalysis.mode": "automatic",
-  "cSpell.words": ["Nativewind", "netinfo", "worklets"],
-  "tailwindCSS.classAttributes": ["class", "className", "headerClassName"]
+  "cSpell.words": [
+    "fakestore",
+    "MMKV",
+    "Nativewind",
+    "netinfo",
+    "Pressable",
+    "worklets"
+  ],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "headerClassName",
+    "labelClassName",
+    "containerClassName",
+    "contentContainerClassName",
+    "titleClassName"
+  ]
 }

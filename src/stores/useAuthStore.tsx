@@ -4,18 +4,26 @@ import { createSelectors } from '@/utils/createSelectors';
 
 type State = {
   isAuth: boolean;
+  token?: string;
 };
 
 type Action = {
-  setIsAuth: (newStatus: boolean) => void;
+  setAuthUserToken: (newToken: string) => void;
+  reset: () => void;
 };
 
 const useAuthStoreBase = create<State & Action>()(
   immer(set => ({
     isAuth: false,
-    setIsAuth: newStatus =>
+    setAuthUserToken: newToken =>
       set(state => {
-        state.isAuth = newStatus;
+        state.isAuth = true;
+        state.token = newToken;
+      }),
+    reset: () =>
+      set(state => {
+        state.isAuth = false;
+        state.token = undefined;
       }),
   })),
 );
