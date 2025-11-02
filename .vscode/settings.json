@@ -3,9 +3,11 @@
   "cSpell.words": [
     "fakestore",
     "MMKV",
+    "moti",
     "Nativewind",
     "netinfo",
     "Pressable",
+    "rraut",
     "worklets"
   ],
   "tailwindCSS.classAttributes": [
@@ -15,6 +17,7 @@
     "labelClassName",
     "containerClassName",
     "contentContainerClassName",
-    "titleClassName"
+    "titleClassName",
+    "columnWrapperClassName"
   ]
 }

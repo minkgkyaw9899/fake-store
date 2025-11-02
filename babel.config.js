@@ -7,6 +7,7 @@ module.exports = {
       {
         root: ['.'],
         alias: {
+          'moti/skeleton': 'moti/skeleton/react-native-linear-gradient',
           test: './__tests__',
           '@': './src',
         },
