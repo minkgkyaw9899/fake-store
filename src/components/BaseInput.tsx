@@ -6,6 +6,8 @@ import EyeIcon from '@/assets/svg/eye.svg';
 import EyeOffIcon from '@/assets/svg/eye-off.svg';
 import { useHandleTheme } from '@/hooks/useHandleTheme';
 import { COLORS } from '@/constants/color';
+import { IoniconsIconName } from '@react-native-vector-icons/ionicons';
+import { Icon } from './Icon';
 
 export type BaseInputProps = TextInputProps & {
   label: string;
@@ -15,6 +17,8 @@ export type BaseInputProps = TextInputProps & {
   errorMessage?: string;
   isRequired?: boolean;
   isPassword?: boolean;
+  customIcon?: IoniconsIconName;
+  iconAction?: () => void;
 };
 
 export const BaseInput = ({
@@ -25,7 +29,9 @@ export const BaseInput = ({
   label,
   isRequired,
   placeholder,
+  customIcon,
   isPassword = false,
+  iconAction,
   ...textInputProps
 }: BaseInputProps) => {
   const [showText, setShowText] = useState(isPassword);
@@ -51,7 +57,7 @@ export const BaseInput = ({
           autoCapitalize={textInputProps.autoCapitalize || 'none'}
           {...textInputProps}
         />
-        {isPassword && (
+        {isPassword ? (
           <Pressable
             onPress={() => setShowText(!showText)}
             className="absolute bottom-4 right-5"
@@ -70,7 +76,11 @@ export const BaseInput = ({
               />
             )}
           </Pressable>
-        )}
+        ) : customIcon ? (
+          <Pressable onPress={iconAction} className="absolute bottom-4 right-5">
+            <Icon name={customIcon} />
+          </Pressable>
+        ) : null}
       </View>
       <Text
         className="text-sm font-semibold text-red-500"

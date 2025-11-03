@@ -137,6 +137,7 @@ const HomeTabs = () => {
             tabBarBadge: 10,
             tabBarIcon: CartTabBarIcon,
             tabBarLabel: CartTabBarLabel,
+            tabBarItemStyle: { display: 'none' },
           }}
           name="Cart"
           component={CartScreen}

@@ -23,7 +23,6 @@ const ProductsListScreen = () => {
     setSelectedCategory,
     productByCategory,
     isFetchingNextPageProductByCategory,
-    isPendingProductByCategory,
     hasNextPageProductByCategory,
     fetchNextPageProductByCategory,
     refetchProductByCategory,
@@ -34,7 +33,6 @@ const ProductsListScreen = () => {
     isFetchingNextPageProductsList,
     hasNextPageProductsList,
     fetchNextPageProductsList,
-    isPendingProductsList,
     refetchProductsList,
   } = useGetProducts();
 
@@ -76,48 +74,44 @@ const ProductsListScreen = () => {
         />
       </View>
       <View className="px-safe flex-1 overflow-hidden">
-        {isPendingProductsList || isPendingProductByCategory ? (
-          <ProductSkeletonListGroup />
-        ) : (
-          <FlatList
-            refreshControl={
-              <RefreshControl
-                refreshing={false}
-                onRefresh={refetchProductByCategory || refetchProductsList}
-              />
-            }
-            showsVerticalScrollIndicator={false}
-            contentContainerClassName="px-6 pt-10 gap-6 flex-grow pb-safe-offset-4"
-            numColumns={2}
-            columnWrapperClassName="justify-between"
-            data={
-              selectedCategory === 'All'
-                ? productsList
-                : selectedCategory && selectedProducts
-                  ? selectedProducts
-                  : []
-            }
-            keyExtractor={item => item?.id.toString()}
-            initialNumToRender={6}
-            maxToRenderPerBatch={4}
-            onEndReached={handleOnEndRead}
-            getItemLayout={(_data, index) => ({
-              length: ITEM_HEIGHT,
-              offset: ITEM_HEIGHT * index,
-              index,
-            })}
-            ListFooterComponent={
-              isFetchingNextPages || isFetchingNextPageProductByCategory ? (
-                <View className="py-4">
-                  <ActivityIndicator
-                    color={isDark ? COLORS.WHITE : COLORS.SLATE_800}
-                  />
-                </View>
-              ) : null
-            }
-            renderItem={({ item }) => <ProductListItem item={item} />}
-          />
-        )}
+        <FlatList
+          refreshControl={
+            <RefreshControl
+              refreshing={false}
+              onRefresh={refetchProductByCategory || refetchProductsList}
+            />
+          }
+          ListEmptyComponent={<ProductSkeletonListGroup />}
+          showsVerticalScrollIndicator={false}
+          contentContainerClassName="px-6 pt-10 gap-6 flex-grow pb-safe-offset-4"
+          numColumns={2}
+          columnWrapperClassName="justify-between"
+          data={
+            selectedCategory === 'All'
+              ? productsList
+              : selectedCategory && selectedProducts
+                ? selectedProducts
+                : []
+          }
+          keyExtractor={item => item?.id.toString()}
+          onEndReached={handleOnEndRead}
+          onEndReachedThreshold={0.5}
+          getItemLayout={(_data, index) => ({
+            length: ITEM_HEIGHT,
+            offset: ITEM_HEIGHT * index,
+            index,
+          })}
+          ListFooterComponent={
+            isFetchingNextPages || isFetchingNextPageProductByCategory ? (
+              <View className="py-4">
+                <ActivityIndicator
+                  color={isDark ? COLORS.WHITE : COLORS.SLATE_800}
+                />
+              </View>
+            ) : null
+          }
+          renderItem={({ item }) => <ProductListItem item={item} />}
+        />
       </View>
     </View>
   );

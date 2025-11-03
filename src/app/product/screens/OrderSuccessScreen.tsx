@@ -22,11 +22,6 @@ const OrderSuccessScreen = () => {
 
               const routes = state.routes.slice(0, index + 1);
 
-              console.log('index', index);
-              console.log('routes', routes);
-
-              console.log(state.routes);
-
               return CommonActions.reset({
                 ...state,
                 routes,

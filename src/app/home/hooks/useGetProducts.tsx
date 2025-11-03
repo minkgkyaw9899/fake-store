@@ -4,6 +4,7 @@ import { getNextPageParam, PaginationResponse } from '@/utils/getNextPageParam';
 import { httpClient } from '@/utils/httpClient';
 import { useIsFocused } from '@react-navigation/native';
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 
 type Response = PaginationResponse & {
   products: Product[];
@@ -23,6 +24,8 @@ export type Product = {
 };
 
 export const useGetProducts = () => {
+  const [productsList, setProductsList] = useState<Product[]>([]);
+
   const isFocused = useIsFocused();
   const {
     data,
@@ -47,8 +50,27 @@ export const useGetProducts = () => {
     getNextPageParam,
   });
 
+  useEffect(() => {
+    if (data?.pages) {
+      const seen = new Set();
+      const merged: Product[] = [];
+
+      for (const page of data.pages) {
+        for (const product of page?.data?.products ?? []) {
+          if (!seen.has(product.id)) {
+            seen.add(product.id);
+            merged.push(product);
+          }
+        }
+      }
+
+      setProductsList(merged);
+    }
+  }, [data?.pages]);
+
   return {
-    productsList: data?.pages?.flatMap(product => product.data.products) || [],
+    totalProducts: data?.pages?.[data.pages.length - 1]?.data.total || 0,
+    productsList,
     isPendingProductsList: isPending,
     errorProductsList: error,
     hasNextPageProductsList: hasNextPage,

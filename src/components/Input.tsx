@@ -7,7 +7,7 @@ import {
   FieldValues,
 } from 'react-hook-form';
 
-type Props<
+export type InputProps<
   T extends FieldValues = FieldValues,
   U extends FieldPath<T> = FieldPath<T>,
 > = BaseInputProps &
@@ -20,7 +20,7 @@ export const Input = <
   name,
   control,
   ...otherInputProps
-}: Props<T, U>) => {
+}: InputProps<T, U>) => {
   return (
     <Controller
       name={name}

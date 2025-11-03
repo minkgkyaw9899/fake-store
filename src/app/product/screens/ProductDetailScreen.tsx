@@ -1,5 +1,6 @@
 import {
   ActivityIndicator,
+  Alert,
   RefreshControl,
   ScrollView,
   StyleSheet,
@@ -101,6 +102,7 @@ const ProductDetail = ({ route }: RootStackScreenProps<'ProductDetail'>) => {
                 disabled={disabled || !product}
                 iconName="cart-outline"
                 title="Add to Cart"
+                onPress={() => Alert.alert('Coming Soon!')}
               />
             </View>
             <View className="w-2/5">

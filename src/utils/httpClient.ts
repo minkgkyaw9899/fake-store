@@ -69,10 +69,38 @@ const updateApi = async <T extends RequestModel, R>(
   }
 };
 
-const deleteApi = async <R>(url: string, config: AxiosRequestConfig<any>) => {
+const deleteApi = async <R>(url: string, config?: AxiosRequestConfig<any>) => {
   try {
     const response: AxiosResponse<ResponseModel<R>> =
       await axiosInstance.delete(url, config);
+    return response.data;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const formDataApi = async <T extends FormData, R>(
+  url: string,
+  {
+    body,
+    method = 'post',
+    config,
+  }: {
+    body: T;
+    method: 'post' | 'patch' | 'put';
+    config?: AxiosRequestConfig<T>;
+  },
+) => {
+  try {
+    const response: AxiosResponse<ResponseModel<R>, T> = await axiosInstance[
+      method
+    ](url, body, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+      ...config,
+    });
+
     return response.data;
   } catch (err) {
     throw err;
@@ -84,4 +112,5 @@ export const httpClient = {
   post: postApi,
   update: updateApi,
   delete: deleteApi,
+  formData: formDataApi,
 };

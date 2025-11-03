@@ -3,6 +3,9 @@ export const MUTATION_KEYS = {
   SIGNUP: 'signup',
   AUTH_USER: 'user',
   UPDATE_USER: 'update_user',
+  DELETE_PRODUCT: 'delete_product',
+  UPDATE_PRODUCT: 'update_product',
+  CREATE_PRODUCT: 'create_product',
 };
 
 export const QUERY_KEYS = {

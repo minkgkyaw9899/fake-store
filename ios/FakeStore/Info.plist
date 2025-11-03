@@ -33,6 +33,10 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>App needs your camera access to take product image and other. These can be configured in Settings.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>App needs your photo library access to pick image for products and other. These can be configured in Settings.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string/>
 	<key>RCTNewArchEnabled</key>

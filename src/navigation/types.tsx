@@ -22,7 +22,10 @@ export type RootStackParamList = {
   ChangeTheme: undefined;
   EditProfile: undefined;
   MyProductsList: undefined;
-  UpdateMyProduct: undefined;
+  UpdateMyProductById: {
+    id: number;
+  };
+  CreateNewProduct: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
