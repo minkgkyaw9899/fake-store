@@ -2,6 +2,7 @@ import { useAuthStore } from '@/stores/useAuthStore';
 import { getToken } from '@/utils/keyChainService';
 import { useEffect, useState } from 'react';
 import { useHandleTheme } from './useHandleTheme';
+import BootSplash from 'react-native-bootsplash';
 
 export const useRunOnStartupApp = () => {
   useHandleTheme();
@@ -19,6 +20,8 @@ export const useRunOnStartupApp = () => {
       }
 
       setIsAppReady(true);
+
+      await BootSplash.hide({ fade: true });
     };
 
     settingUpToken();
