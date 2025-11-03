@@ -2,6 +2,8 @@
   "java.compile.nullAnalysis.mode": "automatic",
   "cSpell.words": [
     "fakestore",
+    "firstname",
+    "lastname",
     "MMKV",
     "moti",
     "Nativewind",

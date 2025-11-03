@@ -4,6 +4,7 @@ import { LoginFormField } from '../schemas';
 
 type Response = {
   token: string;
+  userId: number;
 };
 
 export const login = async (requestData: LoginFormField) => {

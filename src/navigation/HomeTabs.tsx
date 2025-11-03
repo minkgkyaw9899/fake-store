@@ -9,6 +9,8 @@ import {
 } from '@react-native-vector-icons/ionicons';
 import { Text } from '@/components';
 import Animated from 'react-native-reanimated';
+import { useHandleTheme } from '@/hooks/useHandleTheme';
+import CartScreen from '@/app/home/screens/CartScreen';
 
 const Tab = createBottomTabNavigator<HomeTabParamList>();
 
@@ -33,6 +35,9 @@ const CustomTabBarIcon = ({
     case 'MyProfile':
       iconName = focused ? 'person' : 'person-outline';
       break;
+    case 'Cart':
+      iconName = focused ? 'cart' : 'cart-outline';
+      break;
     default:
       iconName = 'alert-circle';
   }
@@ -52,6 +57,10 @@ const ProductTabBarLabel = ({
   focused,
 }: Omit<CustomTabBarLabelProps, 'name'>) => (
   <CustomTabBarLabel focused={focused} name="Home" />
+);
+
+const CartTabBarLabel = ({ focused }: Omit<CustomTabBarLabelProps, 'name'>) => (
+  <CustomTabBarLabel focused={focused} name="Cart" />
 );
 
 const ProfileTabBarLabel = ({
@@ -86,16 +95,33 @@ const ProfileTabBarIcon = ({
   />
 );
 
+const CartTabBarIcon = ({
+  focused,
+  color,
+  size,
+}: Omit<TabBarIconProps, 'routeName'>) => (
+  <CustomTabBarIcon
+    routeName="Cart"
+    focused={focused}
+    color={color}
+    size={size}
+  />
+);
+
 const HomeTabs = () => {
+  const { isDark } = useHandleTheme();
   return (
     <Animated.View className={'flex-1'}>
       <Tab.Navigator
         screenOptions={({}) => ({
           headerShown: false,
           animation: 'shift',
-          tabBarActiveTintColor: COLORS.SLATE_800,
-          tabBarInactiveTintColor: COLORS.SLATE_500,
+          tabBarActiveTintColor: isDark ? COLORS.WHITE : COLORS.SLATE_800,
+          tabBarInactiveTintColor: isDark ? COLORS.SLATE_100 : COLORS.SLATE_500,
           tabBarLabelPosition: 'beside-icon',
+          tabBarStyle: {
+            backgroundColor: isDark ? COLORS.SLATE_600 : COLORS.SLATE_100,
+          },
         })}
       >
         <Tab.Screen
@@ -105,6 +131,15 @@ const HomeTabs = () => {
             tabBarLabel: ProductTabBarLabel,
           }}
           component={ProductsListScreen}
+        />
+        <Tab.Screen
+          options={{
+            tabBarBadge: 10,
+            tabBarIcon: CartTabBarIcon,
+            tabBarLabel: CartTabBarLabel,
+          }}
+          name="Cart"
+          component={CartScreen}
         />
         <Tab.Screen
           options={{

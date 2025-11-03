@@ -1,0 +1,261 @@
+{
+  "lockfileVersion": 1,
+  "packages": {
+    "@babel/core": {
+      "version": "^7.25.2",
+      "integrated": false
+    },
+    "@babel/preset-env": {
+      "version": "^7.25.3",
+      "integrated": false
+    },
+    "@babel/runtime": {
+      "version": "^7.25.0",
+      "integrated": false
+    },
+    "@hookform/resolvers": {
+      "version": "^5.2.2",
+      "integrated": false
+    },
+    "@react-native-community/cli": {
+      "version": "20.0.0",
+      "integrated": false
+    },
+    "@react-native-community/cli-platform-android": {
+      "version": "20.0.0",
+      "integrated": false
+    },
+    "@react-native-community/cli-platform-ios": {
+      "version": "20.0.0",
+      "integrated": false
+    },
+    "@react-native-community/netinfo": {
+      "version": "^11.4.1",
+      "integrated": false
+    },
+    "@react-native-vector-icons/evil-icons": {
+      "version": "^12.4.0",
+      "integrated": false
+    },
+    "@react-native-vector-icons/ionicons": {
+      "version": "^12.3.0",
+      "integrated": false
+    },
+    "@react-native/babel-preset": {
+      "version": "0.82.1",
+      "integrated": false
+    },
+    "@react-native/eslint-config": {
+      "version": "0.82.1",
+      "integrated": false
+    },
+    "@react-native/metro-config": {
+      "version": "0.82.1",
+      "integrated": false
+    },
+    "@react-native/new-app-screen": {
+      "version": "0.82.1",
+      "integrated": false
+    },
+    "@react-native/typescript-config": {
+      "version": "0.82.1",
+      "integrated": false
+    },
+    "@react-navigation/bottom-tabs": {
+      "version": "^7.7.2",
+      "integrated": false
+    },
+    "@react-navigation/devtools": {
+      "version": "^7.0.39",
+      "integrated": false
+    },
+    "@react-navigation/elements": {
+      "version": "^2.8.0",
+      "integrated": false
+    },
+    "@react-navigation/native": {
+      "version": "^7.1.19",
+      "integrated": false
+    },
+    "@react-navigation/native-stack": {
+      "version": "^7.6.1",
+      "integrated": false
+    },
+    "@redux-devtools/extension": {
+      "version": "^3.3.0",
+      "integrated": false
+    },
+    "@rraut/react-native-faster-image": {
+      "version": "^1.0.1",
+      "integrated": false
+    },
+    "@tanstack/eslint-plugin-query": {
+      "version": "^5.91.2",
+      "integrated": false
+    },
+    "@tanstack/react-query": {
+      "version": "^5.90.5",
+      "integrated": false
+    },
+    "@tanstack/react-query-devtools": {
+      "version": "^5.90.2",
+      "integrated": false
+    },
+    "@types/jest": {
+      "version": "^29.5.13",
+      "integrated": false
+    },
+    "@types/react": {
+      "version": "^19.1.1",
+      "integrated": false
+    },
+    "@types/react-test-renderer": {
+      "version": "^19.1.0",
+      "integrated": false
+    },
+    "axios": {
+      "version": "^1.13.1",
+      "integrated": false
+    },
+    "babel-plugin-module-resolver": {
+      "version": "^5.0.2",
+      "integrated": false
+    },
+    "clsx": {
+      "version": "^2.1.1",
+      "integrated": false
+    },
+    "eslint": {
+      "version": "^8.19.0",
+      "integrated": false
+    },
+    "immer": {
+      "version": "^10.2.0",
+      "integrated": false
+    },
+    "jest": {
+      "version": "^29.6.3",
+      "integrated": false
+    },
+    "json-server": {
+      "version": "^1.0.0-beta.3",
+      "integrated": false
+    },
+    "lottie-react-native": {
+      "version": "^7.3.4",
+      "integrated": false
+    },
+    "moti": {
+      "version": "^0.30.0",
+      "integrated": false
+    },
+    "nativewind": {
+      "version": "^4.2.1",
+      "integrated": false
+    },
+    "prettier": {
+      "version": "^3.6.2",
+      "integrated": false
+    },
+    "prettier-plugin-tailwindcss": {
+      "version": "^0.7.1",
+      "integrated": false
+    },
+    "react": {
+      "version": "19.1.1",
+      "integrated": false
+    },
+    "react-hook-form": {
+      "version": "^7.66.0",
+      "integrated": false
+    },
+    "react-native": {
+      "version": "0.82.1",
+      "integrated": false
+    },
+    "react-native-config": {
+      "version": "^1.5.9",
+      "integrated": true
+    },
+    "react-native-device-info": {
+      "version": "^14.1.1",
+      "integrated": false
+    },
+    "react-native-gesture-handler": {
+      "version": "^2.29.0",
+      "integrated": false
+    },
+    "react-native-keyboard-controller": {
+      "version": "^1.19.3",
+      "integrated": false
+    },
+    "react-native-keychain": {
+      "version": "^10.0.0",
+      "integrated": false
+    },
+    "react-native-linear-gradient": {
+      "version": "^2.8.3",
+      "integrated": false
+    },
+    "react-native-mmkv": {
+      "version": "^4.0.0",
+      "integrated": false
+    },
+    "react-native-nitro-modules": {
+      "version": "^0.31.4",
+      "integrated": false
+    },
+    "react-native-reanimated": {
+      "version": "^4.1.3",
+      "integrated": false
+    },
+    "react-native-safe-area-context": {
+      "version": "^5.6.2",
+      "integrated": false
+    },
+    "react-native-screens": {
+      "version": "^4.18.0",
+      "integrated": false
+    },
+    "react-native-svg": {
+      "version": "^15.14.0",
+      "integrated": false
+    },
+    "react-native-svg-transformer": {
+      "version": "^1.5.1",
+      "integrated": false
+    },
+    "react-native-toast-message": {
+      "version": "^2.3.3",
+      "integrated": false
+    },
+    "react-native-worklets": {
+      "version": "0.6.1",
+      "integrated": false
+    },
+    "react-test-renderer": {
+      "version": "19.1.1",
+      "integrated": false
+    },
+    "tailwind-merge": {
+      "version": "^3.3.1",
+      "integrated": false
+    },
+    "tailwindcss": {
+      "version": "^3.4.17",
+      "integrated": false
+    },
+    "typescript": {
+      "version": "^5.8.3",
+      "integrated": false
+    },
+    "zod": {
+      "version": "^4.1.12",
+      "integrated": false
+    },
+    "zustand": {
+      "version": "^5.0.8",
+      "integrated": false
+    }
+  }
+}

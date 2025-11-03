@@ -5,7 +5,7 @@
  * @format
  */
 
-import { StatusBar, useColorScheme } from 'react-native';
+import { StatusBar } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import './global.css';
@@ -20,11 +20,14 @@ import {
 } from '@react-navigation/native';
 import Toast from 'react-native-toast-message';
 import { useRunOnStartupApp } from './hooks/useRunOnStartupApp';
+import { useHandleTheme } from './hooks/useHandleTheme';
 
 function App() {
   const isAppReady = useRunOnStartupApp();
 
-  const isDarkMode = useColorScheme() === 'dark';
+  const { isDark } = useHandleTheme();
+
+  console.log('isDarkMode', isDark);
 
   const navigationRef = useNavigationContainerRef();
 
@@ -35,9 +38,7 @@ function App() {
       <QueryClientProvider client={queryClient}>
         <GestureHandlerRootView>
           <SafeAreaProvider>
-            <StatusBar
-              barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-            />
+            <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
             <NavigationContainer ref={navigationRef}>
               <KeyboardProvider>
                 {isAppReady ? <RootStack /> : null}

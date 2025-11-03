@@ -4,3 +4,6 @@ export * from './Text';
 export * from './PrimaryBottom';
 export * from './LayoutScreen';
 export * from './Spacer';
+export * from './ContainerWithTitle';
+export * from './SecondaryButton';
+export * from './Icon';

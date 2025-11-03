@@ -1,28 +1,43 @@
-import { CompositeScreenProps } from '@react-navigation/native';
+import { OrderProduct } from '@/app/product/screens/OrderProductsScreen';
+import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import {
+  CompositeScreenProps,
+  NavigatorScreenParams,
+} from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
-  Auth: undefined;
-  Home: undefined;
-};
-
-export type HomeTabParamList = {
-  ProductsList: undefined;
-  MyProfile: undefined;
-};
-
-export type AuthStackParamList = {
   Login: undefined;
   Signup: undefined;
+  Home: NavigatorScreenParams<HomeTabParamList>;
+  ProductDetail: {
+    id: number;
+    image: string;
+    title: string;
+  };
+  OrderProducts: {
+    orders: OrderProduct[];
+  };
+  OrderSuccess: undefined;
+  ChangeTheme: undefined;
+  EditProfile: undefined;
+  MyProductsList: undefined;
+  UpdateMyProduct: undefined;
 };
 
 export type RootStackScreenProps<T extends keyof RootStackParamList> =
   NativeStackScreenProps<RootStackParamList, T>;
 
-export type AuthStackScreenProps<T extends keyof AuthStackParamList> =
+export type HomeTabParamList = {
+  ProductsList: undefined;
+  MyProfile: undefined;
+  Cart: undefined;
+};
+
+export type HomeTabScreenProps<T extends keyof HomeTabParamList> =
   CompositeScreenProps<
-    NativeStackScreenProps<AuthStackParamList, T>,
-    RootStackScreenProps<'Auth'>
+    BottomTabScreenProps<HomeTabParamList, T>,
+    RootStackScreenProps<'Home'>
   >;
 
 declare global {

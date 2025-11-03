@@ -7,9 +7,6 @@ import { MUTATION_KEYS } from '@/constants/queryKey';
 import Toast from 'react-native-toast-message';
 import { useLogin } from './useLogin';
 
-const fakeUsername = 'johnd';
-const fakePassword = 'm38rmF$';
-
 export const useSignUp = () => {
   const { control, handleSubmit } = useForm<SignUpFormField>({
     defaultValues: {
@@ -17,6 +14,9 @@ export const useSignUp = () => {
       username: '',
       password: '',
       confirmPassword: '',
+      phone: '',
+      firstname: '',
+      lastname: '',
     },
     resolver: zodResolver(signUpSchema),
   });
@@ -35,7 +35,10 @@ export const useSignUp = () => {
         text1: 'Sign Up Successful',
       });
       // Fake user login because FakeStore API does not support sign-up
-      await loginAsync({ username: fakeUsername, password: fakePassword });
+      await loginAsync({
+        username: data.data.username,
+        password: data.data.password,
+      });
     },
     onError: error => {
       console.log('Login Error:', error);

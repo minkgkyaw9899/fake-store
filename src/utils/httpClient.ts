@@ -5,21 +5,24 @@ type RequestModel = {
   [key: string]: any;
 };
 
-export type ResponseModel = {
-  [key: string]: any;
+export type ResponseModel<T> = {
+  meta: {
+    status: number;
+    message: string;
+  };
+  data: T;
 };
 
-const postApi = async <T extends RequestModel, R extends ResponseModel>(
+const postApi = async <T extends RequestModel, R>(
   url: string,
   reqData: T,
   config?: AxiosRequestConfig<T>,
 ) => {
   try {
-    const response: AxiosResponse<R, T> = await axiosInstance.post(
-      url,
-      reqData,
-      config,
-    );
+    const response: AxiosResponse<
+      ResponseModel<R>,
+      T
+    > = await axiosInstance.post(url, reqData, config);
 
     return response.data;
   } catch (err: unknown) {
@@ -27,15 +30,12 @@ const postApi = async <T extends RequestModel, R extends ResponseModel>(
   }
 };
 
-const getApi = async <R extends ResponseModel>(
-  url: string,
-  config?: AxiosRequestConfig<any>,
-) => {
+const getApi = async <R>(url: string, config?: AxiosRequestConfig<any>) => {
   try {
-    const response: AxiosResponse<R, any> = await axiosInstance.get(
-      url,
-      config,
-    );
+    const response: AxiosResponse<
+      ResponseModel<R>,
+      any
+    > = await axiosInstance.get(url, config);
 
     return response.data;
   } catch (err) {
@@ -43,14 +43,14 @@ const getApi = async <R extends ResponseModel>(
   }
 };
 
-const updateApi = async <T extends RequestModel, R extends ResponseModel>(
+const updateApi = async <T extends RequestModel, R>(
   url: string,
   reqData: T,
-  method: 'PATCH' | 'PUT' = 'PUT',
+  method: 'PATCH' | 'PUT' = 'PATCH',
   config?: AxiosRequestConfig<T>,
 ) => {
   try {
-    let response: AxiosResponse<R>;
+    let response: AxiosResponse<ResponseModel<R>>;
     switch (method) {
       case 'PATCH': {
         response = await axiosInstance.patch(url, reqData, config);
@@ -69,12 +69,10 @@ const updateApi = async <T extends RequestModel, R extends ResponseModel>(
   }
 };
 
-const deleteApi = async <R extends ResponseModel>(
-  url: string,
-  config: AxiosRequestConfig<any>,
-) => {
+const deleteApi = async <R>(url: string, config: AxiosRequestConfig<any>) => {
   try {
-    const response: AxiosResponse<R> = await axiosInstance.delete(url, config);
+    const response: AxiosResponse<ResponseModel<R>> =
+      await axiosInstance.delete(url, config);
     return response.data;
   } catch (err) {
     throw err;

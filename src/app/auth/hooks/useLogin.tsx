@@ -8,6 +8,7 @@ import { MUTATION_KEYS } from '@/constants/queryKey';
 import Toast from 'react-native-toast-message';
 import { AxiosError } from 'axios';
 import { saveToken } from '@/utils/keyChainService';
+import { useGetAuthUserById } from './useGetAuthUserById';
 
 export const useLogin = () => {
   const { control, handleSubmit } = useForm<LoginFormField>({
@@ -20,6 +21,8 @@ export const useLogin = () => {
 
   const setAuthUserToken = useAuthStore.use.setAuthUserToken();
 
+  const { mutateAsync: getAuthUser } = useGetAuthUserById();
+
   const { mutateAsync, isPending, isSuccess } = useMutation({
     mutationFn: async (data: LoginFormField) => {
       return await login(data);
@@ -27,8 +30,9 @@ export const useLogin = () => {
     mutationKey: [MUTATION_KEYS.LOGIN],
     onSuccess: (data, variables) => {
       setTimeout(async () => {
-        await saveToken(variables.username, data.token);
-        setAuthUserToken(data.token);
+        await saveToken(variables.username, data.data.token);
+        setAuthUserToken(data.data.token);
+        getAuthUser(data.data.userId);
       }, 400);
     },
     onError: error => {

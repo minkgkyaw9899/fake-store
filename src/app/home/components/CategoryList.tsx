@@ -10,7 +10,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { Pressable, ScrollView } from 'react-native';
 
 type Props = {
-  categories: string[];
+  categories: string[] | undefined;
   selectedCategory: string;
   isPending: boolean;
   setSelectedCategory: Dispatch<SetStateAction<string>>;
@@ -26,11 +26,12 @@ export const CategoryList = ({
 
   const { isDark } = useHandleTheme();
   const colorMode = isDark ? 'dark' : 'light';
+
   return isPending ? (
     <MotiView
       className="my-6 h-12 flex-row items-center justify-items-start gap-2 px-8"
       animate={{
-        backgroundColor: isDark ? COLORS.SLATE_800 : COLORS.SLATE_100,
+        backgroundColor: isDark ? COLORS.SLATE_500 : COLORS.SLATE_100,
       }}
     >
       <Skeleton colorMode={colorMode} width={100} />
@@ -49,7 +50,7 @@ export const CategoryList = ({
       showsHorizontalScrollIndicator={false}
       contentContainerClassName="px-8 gap-4 my-6 items-center"
     >
-      {['All', ...categories].map(category => (
+      {categories?.map(category => (
         <Pressable
           key={category}
           className={cn(

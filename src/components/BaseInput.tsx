@@ -48,6 +48,7 @@ export const BaseInput = ({
           placeholder={label || placeholder}
           placeholderClassName="text-slate-800 font-semibold"
           secureTextEntry={textInputProps.secureTextEntry || showText}
+          autoCapitalize={textInputProps.autoCapitalize || 'none'}
           {...textInputProps}
         />
         {isPassword && (

@@ -3,12 +3,15 @@ import { Pressable, TextInput, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { useRef } from 'react';
 import SignUpIcon from '@/assets/svg/signup.svg';
-import { AuthStackScreenProps } from '@/navigation/types';
 import { useSignUp } from '../hooks/useSignUp';
+import { RootStackScreenProps } from '@/navigation/types';
 
-const SignUpScreen = ({ navigation }: AuthStackScreenProps<'Signup'>) => {
+const SignUpScreen = ({ navigation }: RootStackScreenProps<'Signup'>) => {
   const { handleSubmit, isPending, control } = useSignUp();
 
+  const lastnameRef = useRef<TextInput>(null);
+  const usernameRef = useRef<TextInput>(null);
+  const phoneRef = useRef<TextInput>(null);
   const emailRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
   const confirmPasswordRef = useRef<TextInput>(null);
@@ -37,9 +40,27 @@ const SignUpScreen = ({ navigation }: AuthStackScreenProps<'Signup'>) => {
 
         <View className="flex-1">
           <Input
+            name="firstname"
+            label="First Name"
+            control={control}
+            onSubmitEditing={() => lastnameRef.current?.focus()}
+            editable={!isPending}
+            maxLength={20}
+          />
+          <Input
+            name="lastname"
+            label="Last Name"
+            control={control}
+            ref={lastnameRef}
+            onSubmitEditing={() => usernameRef.current?.focus()}
+            editable={!isPending}
+            maxLength={20}
+          />
+          <Input
             name="username"
             label="Username"
             control={control}
+            ref={usernameRef}
             onSubmitEditing={() => emailRef.current?.focus()}
             editable={!isPending}
             maxLength={20}
@@ -69,6 +90,17 @@ const SignUpScreen = ({ navigation }: AuthStackScreenProps<'Signup'>) => {
             label="Confirm Password"
             control={control}
             ref={confirmPasswordRef}
+            onSubmitEditing={() => phoneRef.current?.focus()}
+            editable={!isPending}
+            isPassword
+            maxLength={60}
+          />
+          <Input
+            name="phone"
+            label="Phone"
+            control={control}
+            ref={phoneRef}
+            keyboardType="phone-pad"
             editable={!isPending}
             isPassword
             maxLength={60}

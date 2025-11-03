@@ -2,5 +2,7 @@ export const COLORS = {
   WHITE: '#FFFFFF',
   SLATE_100: '#F1F5F9',
   SLATE_500: '#64748B',
+  SLATE_600: '#475569',
   SLATE_800: '#1E293B',
+  RED_500: '#EF4444',
 };

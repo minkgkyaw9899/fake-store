@@ -5,10 +5,10 @@ import { LoginShoppingIcon } from '@/assets/svg';
 import { Text } from '@/components';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-controller';
 import { useLogin } from '../hooks/useLogin';
-import { AuthStackScreenProps } from '@/navigation/types';
 import Toast from 'react-native-toast-message';
+import { RootStackScreenProps } from '@/navigation/types';
 
-const LoginScreen = ({ navigation }: AuthStackScreenProps<'Login'>) => {
+const LoginScreen = ({ navigation }: RootStackScreenProps<'Login'>) => {
   const { control, isPending, isSuccess, handleSubmit } = useLogin();
 
   const passwordRef = useRef<TextInput>(null);

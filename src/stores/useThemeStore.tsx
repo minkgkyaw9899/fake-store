@@ -1,7 +1,7 @@
 import { create } from 'zustand/react';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
-import { zustandThemeStorage } from '@/utils/mmkvStorage';
+import { changeStorage, themeStorage } from '@/utils/mmkvStorage';
 import { createSelectors } from '@/utils/createSelectors';
 
 type State = {
@@ -23,7 +23,7 @@ const useThemeStoreBase = create<State & Action>()(
     })),
     {
       name: 'theme-storage',
-      storage: createJSONStorage(() => zustandThemeStorage),
+      storage: createJSONStorage(() => changeStorage(themeStorage)),
     },
   ),
 );

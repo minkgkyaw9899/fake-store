@@ -10,7 +10,7 @@ export const LayoutScreen = ({ children }: { children: React.ReactNode }) => (
 
 const FallbackLoading = () => {
   return (
-    <View className="flex h-full w-full items-center justify-center gap-3">
+    <View className="flex h-full w-full items-center justify-center gap-3 bg-slate-100 dark:bg-slate-600">
       <ShoppingBagsIcon width={deviceWidth / 2} height={deviceWidth / 2} />
       <Text
         className="text-2xl font-bold text-slate-600 dark:text-slate-200"

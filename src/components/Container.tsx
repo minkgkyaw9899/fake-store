@@ -6,23 +6,23 @@ import {
 } from 'react-native-safe-area-context';
 import { cn } from '@/utils/cn';
 
-type Props = {
+export type ContainerProps = {
   saveAreaViewProps?: SafeAreaViewProps;
   className?: string;
 };
 
-export const Container: FC<PropsWithChildren<Props>> = ({
+export const Container: FC<PropsWithChildren<ContainerProps>> = ({
   children,
   saveAreaViewProps,
   className,
 }) => {
   return (
     <SafeAreaView
-      {...saveAreaViewProps}
       className={cn(
         'flex-1 bg-slate-100 dark:bg-slate-600',
         saveAreaViewProps?.className,
       )}
+      {...saveAreaViewProps}
     >
       <View className={cn('flex-1 px-6', className)}>{children}</View>
     </SafeAreaView>

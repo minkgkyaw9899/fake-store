@@ -3,9 +3,15 @@ import { useAuthStore } from '@/stores/useAuthStore';
 import { RootStackParamList } from './types';
 import { lazy } from 'react';
 import { LayoutScreen } from '@/components';
+import ProductDetailScreen from '@/app/product/screens/ProductDetailScreen';
+import OrderProductsScreen from '@/app/product/screens/OrderProductsScreen';
+import OrderSuccessScreen from '@/app/product/screens/OrderSuccessScreen';
+import LoginScreen from '@/app/auth/screens/LoginScreen';
+import SignUpScreen from '@/app/auth/screens/SignUpScreen';
+import ChangeThemeScreen from '@/app/profile/screens/ChangeThemeScreen';
+import EditProfileScreen from '@/app/profile/screens/EditProfileScreen';
 
 const HomeTabs = lazy(() => import('./HomeTabs'));
-const AuthStack = lazy(() => import('./authStack'));
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -20,11 +26,19 @@ const RootStack = () => {
       }}
     >
       {isAuth ? (
-        <Stack.Screen name="Home" component={HomeTabs} />
+        <Stack.Group>
+          <Stack.Screen name="Home" component={HomeTabs} />
+          <Stack.Screen name="ProductDetail" component={ProductDetailScreen} />
+          <Stack.Screen name="OrderProducts" component={OrderProductsScreen} />
+          <Stack.Screen name="OrderSuccess" component={OrderSuccessScreen} />
+          <Stack.Screen name="ChangeTheme" component={ChangeThemeScreen} />
+          <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+        </Stack.Group>
       ) : (
-        <>
-          <Stack.Screen name="Auth" component={AuthStack} />
-        </>
+        <Stack.Group>
+          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Signup" component={SignUpScreen} />
+        </Stack.Group>
       )}
     </Stack.Navigator>
   );

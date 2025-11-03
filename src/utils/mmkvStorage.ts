@@ -1,21 +1,26 @@
 import { StateStorage } from 'zustand/middleware';
-import { createMMKV } from 'react-native-mmkv';
+import { createMMKV, MMKV } from 'react-native-mmkv';
 import { APP_CONFIGURATIONS } from '@/constants/appConfig';
 
-const themeStorage = createMMKV({
+export const themeStorage = createMMKV({
   encryptionKey: APP_CONFIGURATIONS.THEME_STORE_ENCRYPTION_KEY,
   id: APP_CONFIGURATIONS.THEME_STORE_ID,
 });
 
-export const zustandThemeStorage: StateStorage = {
+export const userInfoStorage = createMMKV({
+  encryptionKey: APP_CONFIGURATIONS.USER_INFO_STORE_ENCRYPTION_KEY,
+  id: APP_CONFIGURATIONS.USER_STORE_ID,
+});
+
+export const changeStorage = (storage: MMKV): StateStorage => ({
   setItem: (name, value) => {
-    return themeStorage.set(name, value);
+    return storage.set(name, value);
   },
   getItem: name => {
-    const value = themeStorage.getString(name);
+    const value = storage.getString(name);
     return value ?? null;
   },
   removeItem: name => {
-    return themeStorage.remove(name);
+    return storage.remove(name);
   },
-};
+});

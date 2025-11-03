@@ -1,4 +1,9 @@
-import { ActivityIndicator, Pressable, PressableProps } from 'react-native';
+import {
+  ActivityIndicator,
+  Pressable,
+  PressableProps,
+  Text,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { cn } from '@/utils/cn';
 import Animated, {
@@ -12,7 +17,7 @@ import Animated, {
 import { COLORS } from '@/constants/color';
 import { runOnJS } from 'react-native-worklets';
 
-type Props = PressableProps & {
+export type PrimaryButtonProps = PressableProps & {
   title: string;
   titleClassName?: string;
   isLoading?: boolean;
@@ -24,7 +29,7 @@ export const PrimaryBottom = ({
   titleClassName,
   isLoading = false,
   ...otherProps
-}: Props) => {
+}: PrimaryButtonProps) => {
   const activityOpacity = useSharedValue(0);
   const textOpacity = useSharedValue(1);
 
@@ -109,13 +114,14 @@ export const PrimaryBottom = ({
       )}
 
       {showText && (
-        <Animated.Text
-          className={cn('text-lg font-semibold text-white', titleClassName)}
-          style={animatedTextStyle}
-          disabled
-        >
-          {title}
-        </Animated.Text>
+        <Animated.View style={animatedTextStyle}>
+          <Text
+            disabled
+            className={cn('text-lg font-semibold text-white', titleClassName)}
+          >
+            {title}
+          </Text>
+        </Animated.View>
       )}
     </Pressable>
   );

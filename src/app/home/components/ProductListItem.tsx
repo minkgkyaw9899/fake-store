@@ -1,17 +1,31 @@
-import { StyleSheet, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 import React, { memo } from 'react';
 import { FasterImageView } from '@rraut/react-native-faster-image';
 import { Product } from '../hooks/useGetProducts';
-import { Text } from '@/components';
-import Ionicons from '@react-native-vector-icons/ionicons';
+import { Icon, Text } from '@/components';
+import { useNavigation } from '@react-navigation/native';
+import { RootStackScreenProps } from '@/navigation/types';
 
 type Props = {
   item: Product;
 };
 
+type Nav = RootStackScreenProps<'Home'>['navigation'];
+
 export const ProductListItem = memo(({ item }: Props) => {
+  const navigation = useNavigation<Nav>();
+
   return (
-    <View className="w-[47%] justify-between rounded-xl bg-white px-2 pt-4">
+    <Pressable
+      onPress={() => {
+        navigation.navigate('ProductDetail', {
+          id: item.id,
+          image: item.image,
+          title: item.title,
+        });
+      }}
+      className="w-[47%] justify-between rounded-xl bg-white px-2 pt-4 dark:bg-slate-800"
+    >
       <View className="mb-6 h-36 w-full rounded-t-xl">
         <FasterImageView
           source={{ uri: item.image, resizeMode: 'contain' }}
@@ -27,9 +41,9 @@ export const ProductListItem = memo(({ item }: Props) => {
           className="text-lg font-medium"
           value={`$${item.price.toString()}`}
         />
-        <Ionicons size={24} name="add" />
+        <Icon size={24} name="add" />
       </View>
-    </View>
+    </Pressable>
   );
 });
 
